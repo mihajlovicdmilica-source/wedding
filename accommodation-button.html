@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smeštaj</title>
+  <style>
+    :root{ --accent:#edc531; --bg:#0b0b0b; --fg:#ffffff; }
+
+    html,body{
+      height:100%;
+      margin:0;
+      background:transparent;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    }
+
+    .wrap{
+      height:100%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:0;
+    }
+
+    /* true square */
+    .tile{
+      width:140px;
+      height:140px;
+      border-radius:16px;
+      background:var(--bg);
+      border:1px solid rgba(237,197,49,.42);
+      color:var(--fg);
+      text-decoration:none;
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+
+      position:relative;
+      overflow:hidden;
+
+      box-shadow:none;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+      will-change:transform;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
+    }
+
+    .tile::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background:
+        radial-gradient(120px 80px at 50% 20%, rgba(237,197,49,.16), transparent 60%),
+        linear-gradient(120deg, transparent 0%, rgba(237,197,49,.14) 45%, transparent 75%);
+      transform:translateY(18%);
+      opacity:.65;
+      transition:transform .55s ease, opacity .55s ease;
+      pointer-events:none;
+    }
+
+    .icon{
+      width:52px;
+      height:52px;
+      border-radius:14px;
+      display:grid;
+      place-items:center;
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.10);
+      position:relative;
+      z-index:1;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .icon svg{
+      width:24px;
+      height:24px;
+      color:var(--accent);
+      transition:transform .18s ease;
+    }
+
+    .label{
+      position:relative;
+      z-index:1;
+      width:110px;
+      text-align:center;
+      font-weight:650;
+      font-size:12.5px;
+      line-height:1.15;
+      letter-spacing:.2px;
+    }
+
+    @media (hover:hover){
+      .tile:hover{
+        transform:translateY(-2px);
+        border-color:rgba(237,197,49,.70);
+        background:rgba(11,11,11,.98);
+      }
+      .tile:hover::before{ transform:translateY(-6%); opacity:.9; }
+      .tile:hover .icon{
+        transform:translateY(-1px);
+        background:rgba(237,197,49,.10);
+        border-color:rgba(237,197,49,.35);
+      }
+      .tile:hover .icon svg{ transform:translateY(-1px); }
+    }
+
+    .tile:active{ transform:translateY(0) scale(.98); }
+
+    .tile:focus-visible{
+      outline:none;
+      box-shadow:0 0 0 3px rgba(237,197,49,.35);
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .tile, .tile::before, .icon, .icon svg{ transition:none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <a
+      class="tile"
+      href="https://sites.google.com/view/ervin-milica-14-04-2027/sme%C5%A1taj"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Smeštaj"
+      onclick="window.open(this.href,'_blank','noopener'); return false;"
+    >
+      <span class="icon" aria-hidden="true">
+        <!-- bed icon -->
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M3 11V8.5A2.5 2.5 0 0 1 5.5 6h13A2.5 2.5 0 0 1 21 8.5V11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M3 11h18v7" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M3 18v-2.5A2.5 2.5 0 0 1 5.5 13h13A2.5 2.5 0 0 1 21 15.5V18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M7 10.5h3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M19 20v-2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M5 20v-2" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/>
+        </svg>
+      </span>
+
+      <span class="label">Smeštaj</span>
+    </a>
+  </div>
+</body>
+</html>
