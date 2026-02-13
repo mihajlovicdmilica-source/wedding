@@ -46,7 +46,6 @@
       will-change:transform;
     }
 
-    /* animated accent sheen */
     .loc-btn::before{
       content:"";
       position:absolute;
@@ -59,7 +58,6 @@
       pointer-events:none;
     }
 
-    /* thin glowing edge */
     .loc-btn::after{
       content:"";
       position:absolute;
@@ -69,7 +67,7 @@
       pointer-events:none;
     }
 
-    .loc-btn__badge{
+    .badge{
       width:42px;
       height:42px;
       border-radius:999px;
@@ -82,14 +80,14 @@
       transition:transform .22s ease, background .22s ease, border-color .22s ease;
     }
 
-    .loc-btn__badge svg{
+    .badge svg{
       width:18px;
       height:18px;
       color:var(--accent);
       transition:transform .22s ease;
     }
 
-    .loc-btn__text{
+    .text{
       font-weight:650;
       font-size:14px;
       line-height:1.1;
@@ -99,7 +97,7 @@
       white-space:nowrap;
     }
 
-    .loc-btn__hint{
+    .hint{
       display:block;
       margin-top:4px;
       font-weight:500;
@@ -115,18 +113,16 @@
     }
     .loc-btn:hover::before{ transform:translateX(10%); }
 
-    .loc-btn:hover .loc-btn__badge{
+    .loc-btn:hover .badge{
       transform:translateX(2px);
       background:rgba(237,197,49,.10);
       border-color:rgba(237,197,49,.32);
     }
-    .loc-btn:hover .loc-btn__badge svg{
+    .loc-btn:hover .badge svg{
       transform:translateY(-1px);
     }
 
-    .loc-btn:active{
-      transform:translateY(0) scale(.985);
-    }
+    .loc-btn:active{ transform:translateY(0) scale(.985); }
 
     .loc-btn:focus-visible{
       outline:none;
@@ -134,28 +130,29 @@
     }
 
     @media (prefers-reduced-motion: reduce){
-      .loc-btn, .loc-btn::before, .loc-btn__badge, .loc-btn__badge svg{
-        transition:none !important;
-      }
+      .loc-btn, .loc-btn::before, .badge, .badge svg{ transition:none !important; }
     }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <!-- promeni href na tvoju stranicu (npr. restaurant.html ili google maps link) -->
-    <a class="loc-btn" href="restaurant-location.html" target="_top" rel="noopener" aria-label="Restoran i lokacija">
-      <span class="loc-btn__badge" aria-hidden="true">
-        <!-- pin icon -->
+    <a
+      class="loc-btn"
+      href="https://sites.google.com/view/ervin-milica-14-04-2027/restoran-meni"
+      target="_top"
+      rel="noopener"
+      aria-label="Restoran i lokacija"
+    >
+      <span class="badge" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
           <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2.2"/>
         </svg>
       </span>
 
-      <span class="loc-btn__text">
-        📍 Restoran &amp; lokacija
-        <span class="loc-btn__hint">Klikni za detalje</span>
+      <span class="text">
+        📍 Restoran &amp; meni
+        <span class="hint">Klikni za detalje</span>
       </span>
     </a>
   </div>
