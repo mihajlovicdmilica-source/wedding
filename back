@@ -1,110 +1,62 @@
-<!-- BACK BUTTON (HTML + CSS) -->
-<a class="back-btn" href="javascript:history.length>1?history.back():window.location.href='/'" aria-label="Nazad">
-  <span class="back-btn__icon" aria-hidden="true">
-    <!-- left arrow -->
-    <svg viewBox="0 0 24 24" fill="none">
-      <path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-    </svg>
-  </span>
-  <span class="back-btn__text">Nazad</span>
-</a>
-
-<style>
-  .back-btn{
-    --accent:#edc531;
-    --bg:#0b0b0b;
-    --fg:#ffffff;
-
-    display:inline-flex;
-    align-items:center;
-    gap:.65rem;
-
-    padding:.9rem 1.15rem;
-    border-radius:999px;
-
-    background:var(--bg);
-    color:var(--fg);
-    text-decoration:none;
-
-    border:1px solid rgba(237,197,49,.25);
-    box-shadow:0 10px 26px rgba(0,0,0,.25);
-    position:relative;
-    overflow:hidden;
-
-    transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    will-change:transform;
-  }
-
-  /* subtle animated accent sweep */
-  .back-btn::before{
-    content:"";
-    position:absolute;
-    inset:-2px;
-    background:
-      radial-gradient(120px 60px at 20% 50%, rgba(237,197,49,.18), transparent 60%),
-      linear-gradient(110deg, transparent 0%, rgba(237,197,49,.18) 40%, transparent 70%);
-    transform:translateX(-40%);
-    transition:transform .55s ease;
-    pointer-events:none;
-  }
-
-  .back-btn__icon{
-    width:38px;
-    height:38px;
-    border-radius:999px;
-    display:grid;
-    place-items:center;
-    background:rgba(255,255,255,.06);
-    border:1px solid rgba(255,255,255,.08);
-    transition:transform .22s ease, background .22s ease, border-color .22s ease;
-  }
-
-  .back-btn__icon svg{
-    width:18px;
-    height:18px;
-    color:var(--accent);
-    transition:transform .22s ease;
-  }
-
-  .back-btn__text{
-    font:600 14px/1.1 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-    letter-spacing:.2px;
-    position:relative;
-    z-index:1;
-  }
-
-  .back-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 14px 34px rgba(0,0,0,.34);
-    border-color:rgba(237,197,49,.45);
-  }
-
-  .back-btn:hover::before{
-    transform:translateX(10%);
-  }
-
-  .back-btn:hover .back-btn__icon{
-    transform:translateX(-2px);
-    background:rgba(237,197,49,.10);
-    border-color:rgba(237,197,49,.30);
-  }
-
-  .back-btn:hover .back-btn__icon svg{
-    transform:translateX(-2px);
-  }
-
-  .back-btn:active{
-    transform:translateY(0px) scale(.98);
-  }
-
-  .back-btn:focus-visible{
-    outline:none;
-    box-shadow:0 0 0 3px rgba(237,197,49,.35), 0 14px 34px rgba(0,0,0,.34);
-  }
-
-  @media (prefers-reduced-motion: reduce){
-    .back-btn, .back-btn::before, .back-btn__icon, .back-btn__icon svg{
-      transition:none !important;
+<!doctype html>
+<html lang="sr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    :root{--accent:#edc531;--bg:#0b0b0b;--fg:#fff;}
+    html,body{height:100%;margin:0;background:transparent;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;}
+    .wrap{height:100%;display:flex;align-items:center;justify-content:flex-start;padding:18px;}
+    .back-btn{
+      display:inline-flex;align-items:center;gap:.65rem;
+      padding:.9rem 1.15rem;border-radius:999px;
+      background:var(--bg);color:var(--fg);text-decoration:none;
+      border:1px solid rgba(237,197,49,.25);
+      box-shadow:0 10px 26px rgba(0,0,0,.25);
+      position:relative;overflow:hidden;
+      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+      cursor:pointer;
     }
-  }
-</style>
+    .back-btn::before{
+      content:"";position:absolute;inset:-2px;
+      background:
+        radial-gradient(120px 60px at 20% 50%, rgba(237,197,49,.18), transparent 60%),
+        linear-gradient(110deg, transparent 0%, rgba(237,197,49,.18) 40%, transparent 70%);
+      transform:translateX(-40%);
+      transition:transform .55s ease;
+      pointer-events:none;
+    }
+    .icon{width:38px;height:38px;border-radius:999px;display:grid;place-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);transition:.22s;}
+    .icon svg{width:18px;height:18px;color:var(--accent);transition:.22s;}
+    .text{font:600 14px/1.1 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;letter-spacing:.2px;position:relative;z-index:1;}
+    .back-btn:hover{transform:translateY(-2px);box-shadow:0 14px 34px rgba(0,0,0,.34);border-color:rgba(237,197,49,.45);}
+    .back-btn:hover::before{transform:translateX(10%);}
+    .back-btn:hover .icon{transform:translateX(-2px);background:rgba(237,197,49,.10);border-color:rgba(237,197,49,.30);}
+    .back-btn:hover .icon svg{transform:translateX(-2px);}
+    .back-btn:active{transform:scale(.98);}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <button class="back-btn" id="backBtn" type="button" aria-label="Nazad">
+      <span class="icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none">
+          <path d="M14 6l-6 6 6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="text">Nazad</span>
+    </button>
+  </div>
+
+  <script>
+    document.getElementById("backBtn").addEventListener("click", () => {
+      try{
+        if (top?.history?.length > 1) top.history.back();
+        else top.location.href = "/";
+      }catch(e){
+        location.href = "/";
+      }
+    });
+  </script>
+</body>
+</html>
