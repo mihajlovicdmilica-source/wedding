@@ -21,119 +21,108 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:18px;
+      padding:16px;
     }
 
-    .loc-btn{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      gap:.75rem;
-
-      padding:1rem 1.25rem;
-      border-radius:999px;
-
-      background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02)) , var(--bg);
+    /* square card button */
+    .tile{
+      width:210px;
+      height:88px;
+      border-radius:14px; /* square-ish (not pill) */
+      background:var(--bg);
+      border:1px solid rgba(237,197,49,.35);
       color:var(--fg);
       text-decoration:none;
 
-      border:1px solid rgba(237,197,49,.28);
-      box-shadow:0 12px 28px rgba(0,0,0,.32);
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
 
+      position:relative;
       overflow:hidden;
-      transform:translateZ(0);
-      transition:transform .22s ease, box-shadow .22s ease, border-color .22s ease;
+
+      /* NO drop shadow */
+      box-shadow:none;
+
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
       will-change:transform;
     }
 
-    .loc-btn::before{
+    /* animated accent sweep (subtle) */
+    .tile::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(140px 70px at 15% 50%, rgba(237,197,49,.18), transparent 60%),
-        linear-gradient(110deg, transparent 0%, rgba(237,197,49,.22) 45%, transparent 70%);
-      transform:translateX(-55%);
-      transition:transform .6s ease;
+        radial-gradient(120px 70px at 50% 20%, rgba(237,197,49,.18), transparent 60%),
+        linear-gradient(120deg, transparent 0%, rgba(237,197,49,.16) 45%, transparent 75%);
+      transform:translateY(18%);
+      opacity:.65;
+      transition:transform .55s ease, opacity .55s ease;
       pointer-events:none;
     }
 
-    .loc-btn::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      border-radius:999px;
-      box-shadow:inset 0 0 0 1px rgba(237,197,49,.10);
-      pointer-events:none;
-    }
-
-    .badge{
-      width:42px;
-      height:42px;
-      border-radius:999px;
+    .icon{
+      width:34px;
+      height:34px;
+      border-radius:10px;
       display:grid;
       place-items:center;
-
       background:rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.10);
-
-      transition:transform .22s ease, background .22s ease, border-color .22s ease;
+      position:relative;
+      z-index:1;
+      transition:transform .18s ease, border-color .18s ease, background .18s ease;
     }
-
-    .badge svg{
+    .icon svg{
       width:18px;
       height:18px;
       color:var(--accent);
-      transition:transform .22s ease;
+      transition:transform .18s ease;
     }
 
-    .text{
-      font-weight:650;
-      font-size:14px;
-      line-height:1.1;
-      letter-spacing:.2px;
+    .label{
       position:relative;
       z-index:1;
+      font-weight:650;
+      font-size:12.5px;
+      line-height:1.05;
+      letter-spacing:.2px;
+      text-align:center;
       white-space:nowrap;
     }
 
-    .hint{
-      display:block;
-      margin-top:4px;
-      font-weight:500;
-      font-size:11px;
-      opacity:.72;
-      letter-spacing:.15px;
-    }
-
-    .loc-btn:hover{
+    .tile:hover{
       transform:translateY(-2px);
-      box-shadow:0 16px 36px rgba(0,0,0,.38);
-      border-color:rgba(237,197,49,.50);
+      border-color:rgba(237,197,49,.60);
+      background:rgba(11,11,11,.98);
     }
-    .loc-btn:hover::before{ transform:translateX(10%); }
-
-    .loc-btn:hover .badge{
-      transform:translateX(2px);
-      background:rgba(237,197,49,.10);
-      border-color:rgba(237,197,49,.32);
+    .tile:hover::before{
+      transform:translateY(-6%);
+      opacity:.9;
     }
-    .loc-btn:hover .badge svg{
+    .tile:hover .icon{
       transform:translateY(-1px);
+      background:rgba(237,197,49,.10);
+      border-color:rgba(237,197,49,.35);
     }
+    .tile:hover .icon svg{ transform:translateY(-1px); }
 
-    .loc-btn:active{ transform:translateY(0) scale(.985); }
+    .tile:active{ transform:translateY(0) scale(.98); }
 
-    .loc-btn:focus-visible{
+    .tile:focus-visible{
       outline:none;
-      box-shadow:0 0 0 3px rgba(237,197,49,.35), 0 16px 36px rgba(0,0,0,.38);
+      box-shadow:0 0 0 3px rgba(237,197,49,.35);
     }
 
     @media (prefers-reduced-motion: reduce){
-      .loc-btn, .loc-btn::before, .badge, .badge svg{ transition:none !important; }
+      .tile, .tile::before, .icon, .icon svg{ transition:none !important; }
     }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <a
@@ -145,17 +134,14 @@
   onclick="window.open(this.href,'_blank','noopener'); return false;"
 >
 
-      <span class="badge" aria-hidden="true">
+      <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
           <path d="M12 11.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" stroke="currentColor" stroke-width="2.2"/>
         </svg>
       </span>
 
-      <span class="text">
-        Restoran &amp; meni
-        <span class="hint">Klikni za detalje</span>
-      </span>
+      <span class="label">Restoran &amp; meni</span>
     </a>
   </div>
 </body>
