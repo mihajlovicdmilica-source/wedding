@@ -1,3 +1,4 @@
+<!-- restaurant-button.html (square tile, icon center, text below, no shadow) -->
 <!doctype html>
 <html lang="sr">
 <head>
@@ -5,32 +6,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Restoran & lokacija</title>
   <style>
-    :root{
-      --accent:#edc531;
-      --bg:#0b0b0b;
-      --fg:#ffffff;
-    }
+    :root{ --accent:#edc531; --bg:#0b0b0b; --fg:#ffffff; }
+
     html,body{
       height:100%;
       margin:0;
       background:transparent;
       font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
     }
+
     .wrap{
       height:100%;
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:16px;
+      padding:14px;
     }
 
-    /* square card button */
+    /* TRUE SQUARE */
     .tile{
-      width:210px;
-      height:88px;
-      border-radius:14px; /* square-ish (not pill) */
+      width:140px;
+      height:140px;
+      border-radius:16px;
       background:var(--bg);
-      border:1px solid rgba(237,197,49,.35);
+      border:1px solid rgba(237,197,49,.42);
       color:var(--fg);
       text-decoration:none;
 
@@ -38,26 +37,28 @@
       flex-direction:column;
       align-items:center;
       justify-content:center;
-      gap:8px;
+      gap:10px;
 
       position:relative;
       overflow:hidden;
 
-      /* NO drop shadow */
+      /* no shadow */
       box-shadow:none;
 
       transition:transform .18s ease, border-color .18s ease, background .18s ease;
       will-change:transform;
+      -webkit-tap-highlight-color: transparent;
+      user-select:none;
     }
 
-    /* animated accent sweep (subtle) */
+    /* subtle animated accent sweep */
     .tile::before{
       content:"";
       position:absolute;
       inset:-2px;
       background:
-        radial-gradient(120px 70px at 50% 20%, rgba(237,197,49,.18), transparent 60%),
-        linear-gradient(120deg, transparent 0%, rgba(237,197,49,.16) 45%, transparent 75%);
+        radial-gradient(120px 80px at 50% 20%, rgba(237,197,49,.16), transparent 60%),
+        linear-gradient(120deg, transparent 0%, rgba(237,197,49,.14) 45%, transparent 75%);
       transform:translateY(18%);
       opacity:.65;
       transition:transform .55s ease, opacity .55s ease;
@@ -65,9 +66,9 @@
     }
 
     .icon{
-      width:34px;
-      height:34px;
-      border-radius:10px;
+      width:52px;
+      height:52px;
+      border-radius:14px;
       display:grid;
       place-items:center;
       background:rgba(255,255,255,.06);
@@ -76,9 +77,10 @@
       z-index:1;
       transition:transform .18s ease, border-color .18s ease, background .18s ease;
     }
+
     .icon svg{
-      width:18px;
-      height:18px;
+      width:24px;
+      height:24px;
       color:var(--accent);
       transition:transform .18s ease;
     }
@@ -86,17 +88,17 @@
     .label{
       position:relative;
       z-index:1;
+      width:110px;
+      text-align:center;
       font-weight:650;
       font-size:12.5px;
-      line-height:1.05;
+      line-height:1.15;
       letter-spacing:.2px;
-      text-align:center;
-      white-space:nowrap;
     }
 
     .tile:hover{
       transform:translateY(-2px);
-      border-color:rgba(237,197,49,.60);
+      border-color:rgba(237,197,49,.70);
       background:rgba(11,11,11,.98);
     }
     .tile:hover::before{
@@ -122,18 +124,16 @@
     }
   </style>
 </head>
-
 <body>
   <div class="wrap">
     <a
-  class="loc-btn"
-  href="https://sites.google.com/view/ervin-milica-14-04-2027/restoran-meni"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Restoran i lokacija"
-  onclick="window.open(this.href,'_blank','noopener'); return false;"
->
-
+      class="tile"
+      href="https://sites.google.com/view/ervin-milica-14-04-2027/restoran-meni"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Restoran i lokacija"
+      onclick="window.open(this.href,'_blank','noopener'); return false;"
+    >
       <span class="icon" aria-hidden="true">
         <svg viewBox="0 0 24 24" fill="none">
           <path d="M12 22s7-4.5 7-11a7 7 0 1 0-14 0c0 6.5 7 11 7 11Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/>
@@ -141,7 +141,7 @@
         </svg>
       </span>
 
-      <span class="label">Restoran &amp; meni</span>
+      <span class="label">Restoran<br>&amp; Jelovnik</span>
     </a>
   </div>
 </body>
